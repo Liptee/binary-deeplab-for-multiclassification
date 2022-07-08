@@ -25,3 +25,8 @@ def line_contrasting(img):
     min, max = find_edges(img)
     copy = (img-min)/(max-min)*255
     return copy.astype('uint8')
+
+def load_data_for_train(path):
+    X = sorted(glob(os.path.join(path, "imgs", f"*.png")))
+    Y = sorted(glob(os.path.join(path, "masks", f"*.png")))
+    return X, Y
