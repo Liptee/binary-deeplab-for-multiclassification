@@ -5,7 +5,10 @@ import numpy as np
 from glob import glob
 from tqdm import tqdm
 
-from data import create_dirs_for_every_label_of_masks
+from data import (create_dirs_for_every_label_of_masks,
+create_test_data,
+recover_train_data)
+
 from model import check_model
 from train import train
 
@@ -73,3 +76,24 @@ while command != "exit":
             dr2 = input("choose dilation rate 2(Standart: 12):::")
             dr3 = input("choose dilation rate 3(Standart: 18):::")
             train(int(i), act1, act2, dr1, dr2, dr3, format_img, format_mask)
+        
+    
+    if command == "train_all":
+        q = input("Stardatr?(y or n):::")
+        if q == "y":
+            for i in range(num_labels):
+                train(int(i), "sigmoid", "sigmoid", 6, 12, 18, format_img, format_mask)
+        if q == "n":
+            act1 = input("choose act1(Standart: sigmoid):::")
+            act2 = input("choose act2(Standart: sigmoid):::")
+            dr1 = input("choose dilation rate 1(Standart: 6):::")
+            dr2 = input("choose dilation rate 2(Standart: 12):::")
+            dr3 = input("choose dilation rate 3(Standart: 18):::")
+            for i in range(num_labels):
+                train(int(i), act1, act2, dr1, dr2, dr3, format_img, format_mask)
+
+    if command == "separate":
+        create_test_data(format_img, format_mask)
+
+    if command == "rcvr":
+        recover_train_data(format_img, format_mask)

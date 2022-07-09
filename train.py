@@ -66,7 +66,7 @@ def train(label, act1, act2, dr1, dr2, dr3, format_img, format_mask):
 
     lr = 1e-4
     model_path = os.path.join(f"files", f"model_{label}.h5")
-    csv_path = os.path.join("files", "data.csv")
+    csv_path = os.path.join("files", f"data_{label}.csv")
 
     train_path = f"data/labeled/{label}"
 

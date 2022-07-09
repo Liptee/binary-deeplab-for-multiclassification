@@ -14,7 +14,6 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.applications import ResNet50
 from conf import *
 
-
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 def SqueezeAndExcite(inputs, ratio=8):
